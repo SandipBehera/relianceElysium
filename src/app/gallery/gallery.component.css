@@ -1,0 +1,129 @@
+/* ===== HERO / CAROUSEL ===== */
+.carousel-item-wrapper{
+  position: relative;
+  width: 100%;
+  /* Give the section its own height that adapts on mobile toolbars */
+  height: 100vh;
+}
+@supports (height: 100svh){
+  .carousel-item-wrapper{ height: 100svh; }   /* safer mobile viewport */
+}
+
+.carousel-video{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay{
+  position: absolute; inset: 0;
+  background-color: rgba(0,0,0,.4);
+  z-index: 1;
+}
+
+.carousel-content{
+  position: absolute; inset: 0;               /* fill the slide */
+  z-index: 2;
+  display: flex;
+  align-items: center;                         /* vertical center */
+  justify-content: flex-end;                   /* right on desktop */
+  padding: 0 5%;
+}
+
+.property-card{
+  width: clamp(280px, 40vw, 600px);            /* responsive width */
+  max-width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+  padding: 20px;
+}
+
+/* CTA */
+.cta-btn{
+  display:block; width:100%;
+  background:#67ad4c; color:#fff; padding:12px;
+  font-size:1rem; font-weight:700; border:0; border-radius:8px; margin-top:15px; cursor:pointer;
+}
+.cta-btn:hover{ filter: brightness(.95); }
+
+/* Medium screens: center the card, slightly shorter hero */
+@media (max-width: 992px){
+  .carousel-item-wrapper{ height: 80vh; }
+  @supports (height: 100svh){
+    .carousel-item-wrapper{ height: 80svh; }
+  }
+  .carousel-content{ justify-content: center; padding: 0 4%; }
+  .property-card{ width: min(560px, 90vw); padding: 18px; }
+}
+
+/* Small screens: tighter padding, keep card centered */
+@media (max-width: 576px){
+  .carousel-item-wrapper{ height: 65vh; }
+  @supports (height: 100svh){
+    .carousel-item-wrapper{ height: 65svh; }
+  }
+  .property-card{ width: 92vw; padding: 16px; }
+  .cta-btn{ padding: 14px; font-size: 1.05rem; }
+}
+
+/* ===== TYPO ===== */
+.overview-text{
+  font-family: "Bebas Neue", sans-serif;
+  color:#67ad4c;
+  text-transform: uppercase;
+  font-size: clamp(1.25rem, 1rem + 2vw, 2rem);   /* scales down nicely */
+  font-weight:700;
+  text-align:center;
+}
+
+/* ===== GALLERY GRID ===== */
+.grid_images.grid-uniform{
+  display:grid;
+  gap:18px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* Tune columns per breakpoint for nicer steps */
+@media (max-width: 992px){
+  .grid_images.grid-uniform{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap:16px;
+  }
+}
+/* === Mobile-only override: stack images 1-per-row === */
+@media (max-width: 576px){
+  .grid_images.grid-uniform{
+    grid-template-columns: 1fr !important;  /* override the 2-up rule */
+    gap: 12px;
+  }
+
+  /* remove the fixed tile ratio on phones */
+  .grid_images.grid-uniform .g-item .img_par{
+    aspect-ratio: auto;                      /* undo 4/3 on mobile */
+  }
+
+  /* let the image decide the height */
+  .grid_images.grid-uniform .g-item img{
+    height: auto;                            /* was 100% */
+    width: 100%;
+    object-fit: contain;                     /* use 'cover' if you prefer cropping */
+  }
+}
+@media (max-width: 380px){
+  .grid_images.grid-uniform{
+    grid-template-columns: 1fr;                 /* very small screens */
+  }
+}
+
+.g-item{
+  border-radius:14px; overflow:hidden;
+  background:#0e0e0e; box-shadow:0 6px 24px rgba(0,0,0,.25);
+}
+.g-item .img_par{ display:block; aspect-ratio: 4 / 3; }
+.g-item img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition: transform .35s ease;
+}
+.g-item:hover img{ transform: scale(1.03); }

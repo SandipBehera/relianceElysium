@@ -1,0 +1,17 @@
+<section class="grid_img">
+  <div class="container">
+    <div class="head_block">
+      <h2>Gallery</h2>
+      <div class="line_title"><svg><use xlink:href="assets/img/icons/sprite.svg#lamp_white_s"></use></svg></div>
+      <p>Explore crafted spaces that redefine elite living: </p>
+    </div>
+
+    <div [class]="isMobile? 'grid_images' : 'grid_images grid-uniform'">
+      <figure class="g-item" *ngFor="let image of images">
+        <a class="img_par rn_surface" data-fancybox="gallery" [href]="image.full">
+          <img [src]="image.thumbnail" [alt]="image.alt" loading="lazy" decoding="async" />
+        </a>
+      </figure>
+    </div>
+  </div>
+</section>

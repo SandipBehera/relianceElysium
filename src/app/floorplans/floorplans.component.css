@@ -1,0 +1,333 @@
+/* ===========================
+   Card — modern, accessible
+   =========================== */
+:root{
+  --card-bg: #ffffff;
+  --card-fg: #0f172a;           /* slate-900 */
+  --muted-fg: #475569;          /* slate-600 */
+  --card-border: #e2e8f0;       /* slate-200 */
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg: 0 2px 6px rgba(0,0,0,.08), 0 14px 28px rgba(0,0,0,.12);
+  --radius: 16px;
+  --ring: #2563eb33;            /* blue-600 w/ alpha */
+  --accent: #2563eb;            /* blue-600 */
+}
+
+/* Optional grid to lay out multiple cards */
+.cards{
+  display:grid;
+  gap:1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Core card */
+.card{
+  position: relative;
+  display:flex;
+  flex-direction:column;
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: clip;               /* clean edge for media zoom */
+  box-shadow: var(--shadow);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.card:hover,
+.card:focus-within{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Keyboard accessibility */
+.card:focus-visible{
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Media (image/video) */
+.card__media{
+  aspect-ratio: 16 / 9;
+  background: #f1f5f9;          /* slate-100 fallback */
+  overflow: hidden;
+}
+.card__media > img,
+.card__media > video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform .5s ease;
+  border-radius: 10px;
+  border: 1px solid #67AC4B;
+}
+.card:hover .card__media > img,
+.card:hover .card__media > video{
+  transform: scale(1.06);
+}
+
+/* Optional status badge (e.g., "For Sale") */
+.card__badge{
+  position:absolute;
+  top:.75rem;
+  left:.75rem;
+  padding:.35rem .6rem;
+  font-size:.75rem;
+  font-weight:600;
+  color:#0b3a0f;
+  background:#bbf7d0;           /* green-200 */
+  border:1px solid #86efac;     /* green-300 */
+  border-radius: 999px;
+}
+
+/* Content */
+.card__content{
+  padding: 1rem 1rem .75rem;
+  flex: 1 1 auto;
+}
+
+.card__title{
+  margin:0 0 .4rem;
+  font-weight:700;
+  line-height:1.2;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.25rem);
+  display:-webkit-box;
+  -webkit-line-clamp: 2;        /* 2-line ellipsis */
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
+
+.card__meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem .9rem;
+  font-size:.86rem;
+  color: var(--muted-fg);
+}
+
+.card__desc{
+  margin:.6rem 0 0;
+  color: var(--muted-fg);
+  font-size:.95rem;
+  line-height:1.55;
+  display:-webkit-box;
+  -webkit-line-clamp: 3;        /* 3-line ellipsis */
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
+
+/* Actions (buttons, links) */
+.card__actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  padding: .75rem 1rem 1rem;
+}
+
+.btn{
+  appearance:none;
+  border:0;
+  border-radius: calc(var(--radius) - 8px);
+  padding:.6rem .9rem;
+  font-weight:600;
+  cursor:pointer;
+  background: var(--accent);
+  color:#fff;
+  transition: transform .1s ease, filter .2s ease;
+}
+.btn:hover{ filter: brightness(.95); }
+.btn:active{ transform: translateY(1px); }
+.btn:focus-visible{ outline: 3px solid var(--ring); outline-offset:2px; }
+
+.btn.ghost{
+  background: transparent;
+  color: var(--accent);
+  border:1px solid currentColor;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark){
+  :root{
+    --card-bg:#0b1220;          /* slate-950-ish */
+    --card-fg:#e5e7eb;          /* slate-200 */
+    --muted-fg:#9ca3af;         /* slate-400 */
+    --card-border:#1f2937;      /* slate-800 */
+    --ring:#60a5fa55;           /* softer ring */
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .card, .card__media > img, .card__media > video { transition: none !important; }
+}
+.enquire-btn {
+    display: inline-block;
+    background-color: #67ad4c;
+    color: white;
+    font-weight: bold;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    transition: "background 0.3s ease";
+  }
+  
+  .enquire-btn:hover {
+    background-color: #67ad4c;
+  }
+  /* ============== Floor Plans & Pricing ============== */
+:root{
+  --tbl-bg:#ffffff;
+  --tbl-fg:#0f172a;            /* slate-900 */
+  --tbl-muted:#6b7280;         /* slate-500 */
+  --tbl-border:#e5e7eb;        /* slate-200 */
+  --tbl-header:#f8fafc;        /* slate-50 */
+  --tbl-accent:#2563eb;        /* blue-600 */
+  --tbl-ring:#93c5fd66;        /* focus ring */
+  --radius:16px;
+  --shadow:0 1px 2px rgba(2,6,23,.05), 0 8px 24px rgba(2,6,23,.06);
+  --shadow-lg:0 8px 20px rgba(2,6,23,.08), 0 18px 32px rgba(2,6,23,.12);
+}
+
+.plans-table-wrap{
+  max-width: 1000px;
+  margin: 0 auto;
+  /* background: var(--tbl-bg); */
+  border: 1px solid var(--tbl-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.plans-table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--tbl-fg);
+  align-items: center;
+}
+
+.plans-table caption{
+  text-align: left;
+  padding: 16px 20px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--tbl-muted);
+  background: var(--tbl-header);
+}
+
+.plans-table thead th{
+  position: sticky; top: 0;
+  background: var(--tbl-header);
+  color: var(--tbl-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .85rem;
+  letter-spacing: .06em;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--tbl-border);
+}
+
+.plans-table tbody td{
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--tbl-border);
+  vertical-align: middle;
+}
+
+.plans-table tbody tr:hover{
+  background: #f9fafb;
+}
+
+.area-chip{
+  display: inline-block;
+  padding: .25rem .5rem;
+  border: 1px solid var(--tbl-border);
+  border-radius: 999px;
+  font-size: .85rem;
+  color: var(--tbl-fg);
+  background: transparent;
+  margin-right: .4rem;
+}
+
+.price{
+  font-weight: 800;
+  font-size: 1rem;
+}
+.price small{
+  display:block;
+  color: var(--tbl-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Download button */
+.btn-download{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .8rem;
+  border-radius: 12px;
+  background: var(--tbl-accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(37,99,235,.28);
+  transition: filter .2s ease, transform .1s ease;
+  outline: none;
+  border: 0;
+}
+.btn-download:hover{ filter: brightness(.95); }
+.btn-download:active{ transform: translateY(1px); }
+.btn-download:focus-visible{ outline: 3px solid var(--tbl-ring); outline-offset: 2px; }
+.btn-download svg{ width: 18px; height: 18px; }
+
+/* Notes */
+.table-note{
+  max-width: 1000px;
+  margin: 10px auto 0;
+  color: var(--tbl-muted);
+  font-size: .9rem;
+}
+
+/* ---------- Mobile: stack rows like cards ---------- */
+@media (max-width: 680px){
+  .plans-table thead{ display: none; }
+  .plans-table tbody tr{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--tbl-border);
+  }
+  .plans-table tbody td{
+    border: 0;
+    padding: 0;
+  }
+  .plans-table tbody td::before{
+    content: attr(data-label);
+    display: block;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--tbl-muted);
+    margin-bottom: 4px;
+  }
+  .plans-table tbody tr:hover{ background: transparent; }
+  .price{ font-size: 1.05rem; }
+  .btn-download{ width: 100%; justify-content: center; }
+}
+
+/* Optional dark mode */
+@media (prefers-color-scheme: dark){
+  :root{
+    --tbl-bg:#0b1220;
+    --tbl-fg:#e5e7eb;
+    --tbl-muted:#98a0ab;
+    --tbl-border:#1f2937;
+    --tbl-header:#0f172a;
+    --tbl-ring:#60a5fa66;
+  }
+  .plans-table tbody tr:hover{ background: #0e1627; }
+}

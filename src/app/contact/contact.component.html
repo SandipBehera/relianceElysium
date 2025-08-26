@@ -1,0 +1,35 @@
+<section class=" container reviews">
+    <div class=" row">
+        <div class="img_full_w_block rn_surface col-12 col-lg-6"><iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.2180927204254!2d78.19825279999999!3d17.428465799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbef0079cc74d1%3A0x67359ee57ae98f41!2sReliance%20Elysium!5e1!3m2!1sen!2sin!4v1754420428585!5m2!1sen!2sin"
+                [width]="isMobile?'100%':'1000px'" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="Google Maps location of Reliance Elysium"></iframe>
+        </div>
+        <div class="form_contact col-12 col-lg-6">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="rpl_b">
+                    <label for="email">Name</label>
+                    <input id="name" placeholder="Name" formControlName="name" [class.is-invalid]="invalid('name')" /><br/>
+                    <small class="error" *ngIf="hasError('name','required')">Name is required.</small>
+                </div>
+
+                <div class="rpl_b">
+                    <label for="email">Email</label>
+                    <input id="email" placeholder="Email" formControlName="email"
+                        [class.is-invalid]="invalid('email')" /><br/>
+                    <small class="error" *ngIf="hasError('email','required')">Email is required.</small>
+                    <small class="error" *ngIf="hasError('email','email')">Enter a valid email.</small>
+                </div>
+
+                <div class="rpl_b">
+                    <label for="phone">Phone</label>
+                    <input id="phone" placeholder="Phone" formControlName="phone"
+                        [class.is-invalid]="invalid('phone')" /><br/>
+                    <small class="error" *ngIf="hasError('phone','required')">Phone is required.</small>
+                </div>
+
+                <button class="button_small" type="submit" style="background-color: transparent;top:10px">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
