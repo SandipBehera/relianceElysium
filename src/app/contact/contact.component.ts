@@ -45,8 +45,9 @@ constructor(private formbuilder: UntypedFormBuilder,private leadsServ: LeadServi
       this.contactForm.markAllAsTouched();
       return;
     }
-    const data = this.contactForm.value;
-    console.log('Form Data:', data); // For debugging
+    const data = {...this.contactForm.value,
+      website_name:'https://relianceelysium.com/'
+    };
     // TODO: send data to your API
     this.leadsServ.formSubmit(data).subscribe(
         response => {
